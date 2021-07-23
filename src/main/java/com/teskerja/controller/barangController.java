@@ -67,7 +67,7 @@ public class barangController {
             result = "id" + id + " tidak ditemukan";
             return result;
         }
-        result = "id " + id + " berhasil di hapus";
+        result =  brg.getNamaBarang() + " berhasil di hapus";
         brrepo.delete(brg);
         return result;
     }

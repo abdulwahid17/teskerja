@@ -6,6 +6,7 @@
 package com.teskerja.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -28,14 +29,14 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 @Table(name = "tbl_barang")
 @EntityListeners(AuditingEntityListener.class)
 @JsonIgnoreProperties(value = {"createdAt", "updatedAt"}, allowGetters = true)
-public class barang {
+public class barang implements Serializable{
 
     @Id
     @GeneratedValue(strategy = javax.persistence.GenerationType.AUTO)
     private Long id;
     @NotBlank
     private String namaBarang;
-    @NotBlank
+    
     private double harga;
     @Column(nullable = false, updatable = false)
     @Temporal(TemporalType.TIMESTAMP)

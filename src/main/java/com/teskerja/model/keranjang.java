@@ -6,6 +6,7 @@
 package com.teskerja.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -29,17 +30,13 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 @Table(name = "tbl_keranjang")
 @EntityListeners(AuditingEntityListener.class)
 @JsonIgnoreProperties(value = {"createdAt", "updatedAt"}, allowGetters = true)
-public class keranjang {
+public class keranjang implements Serializable{
     @Id
-    @GeneratedValue(strategy = javax.persistence.GenerationType.AUTO)
-    private Long id;
-    @NotBlank
-    private String idPembeli;
-    @OneToMany
-    private barang idbarang;
-    @NotBlank
+    private long id;
+    private long idPembeli;
+    private long idbarang;
     private int jumlah;
-    @NotBlank
+    @Column(nullable = false)
     private double total;
     @Column(nullable = false, updatable = false)
     @Temporal(TemporalType.TIMESTAMP)
@@ -58,13 +55,15 @@ public class keranjang {
         this.id = id;
     }
 
-    public barang getIdbarang() {
+    public long getIdbarang() {
         return idbarang;
     }
 
-    public void setIdbarang(barang idbarang) {
+    public void setIdbarang(long idbarang) {
         this.idbarang = idbarang;
     }
+
+   
 
    
     public int getJumlah() {
@@ -99,12 +98,14 @@ public class keranjang {
         this.updatedAt = updatedAt;
     }
 
-    public String getIdPembeli() {
+    public long getIdPembeli() {
         return idPembeli;
     }
 
-    public void setIdPembeli(String idPembeli) {
+    public void setIdPembeli(long idPembeli) {
         this.idPembeli = idPembeli;
     }
+
+  
     
 }
